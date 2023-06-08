@@ -20,6 +20,7 @@ Thumbs.db
 *.ilk
 *.log
 [Bb]in
+[Bb]in*/
 [Dd]ebug*/
 *.lib
 *.sbr
@@ -30,3 +31,5 @@ _ReSharper*/
 .vs/
 #Nuget packages folder
 packages/
+#Ignore odt files 
+*.odt
