@@ -1,4 +1,1 @@
-1;CAT;Zuber;2018-06-07;
-2;CAMEL;Beliy;2019-05-07;
-3;DOG;Barbos;2022-07-05;
-4;HORSE;Rembrandt;2015-12-12;
+1;Pack;HORSE;Popsel;2017-04-08;

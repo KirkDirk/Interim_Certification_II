@@ -1,6 +1,9 @@
 package intrefaces;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.RandomAccessFile;
@@ -30,17 +33,18 @@ public class DBASample implements DBActions{
     }
     
     private String animalToString(Animal animal){
-        String animalString = "\n" + Integer.toString(animal.getIdAnimal()) + ";"
+        String animalString = Integer.toString(animal.getIdAnimal()) + ";"
+                                + animal.getAnymalType() + ";"
                                 + animal.getClassAnimal() + ";"
                                 + animal.getAnimalName() + ";"
-                                + animal.getBirthday() + ";";
+                                + animal.getBirthday() + ";" + "\n";
         return animalString;
     }
 
     @Override
     public int GetNextIdAnimal() {
         File file = new File(this.dbFileName);
-            String lastLine = ReadLastLine(file);
+        String lastLine = ReadLastLine(file);
         int nextId = 0;
         if (lastLine != null) {
             String[] numbers = lastLine.split(";");            
@@ -64,5 +68,34 @@ public class DBASample implements DBActions{
             e.printStackTrace();
         }
         return result;
+    }
+
+    @Override
+    public String GetAnimalType(Animal animal, String classAnimalFile) {
+        String animalType = "";
+        try {
+            File file = new File(classAnimalFile);
+            FileReader fr = new FileReader(file);
+            BufferedReader reader = new BufferedReader(fr);
+            String line = reader.readLine();
+            while (animalType == "") {
+                if (line != null) {
+                    String[] animals = line.split(";");    
+                    System.out.println(animals);
+                    for (int i = 1; i < animals.length; i++) {
+                        System.out.println(animals[0] + " " + animals[i] +" "+ animal.getClassAnimal());
+                        if (animals[i].toUpperCase().equals(animal.getClassAnimal())) {
+                            animalType = animals[0];
+                        }
+                    }        
+                }                
+                line = reader.readLine();
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }    
+        return animalType;
     }   
 }

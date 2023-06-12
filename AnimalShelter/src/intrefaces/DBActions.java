@@ -9,5 +9,7 @@ public interface DBActions {
 
     public int GetNextIdAnimal();
 
+    public String GetAnimalType(Animal animal, String classAnimalFile);
+
      
 }

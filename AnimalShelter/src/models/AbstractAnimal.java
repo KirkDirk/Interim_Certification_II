@@ -55,6 +55,6 @@ public abstract class AbstractAnimal {
 
     public void setBirthday(LocalDate birthday) {
         this.birthday = birthday;
-    }      
+    }
         
 }

@@ -31,4 +31,9 @@ public class MMSample implements MenuManagable {
         return dbActions.GetNextIdAnimal();        
     }
 
+    @Override
+    public String GetAnimalType(Animal animal, String classAnimalFile) {
+        return dbActions.GetAnimalType(animal, classAnimalFile);
+    }
+
 }

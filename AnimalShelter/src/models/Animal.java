@@ -3,7 +3,7 @@ package models;
 import java.time.LocalDate;
 
 public class Animal extends AbstractAnimal {
-    //private int kindId = 0;
+    private String anymalType;
 
     public Animal(int idAnimal, String classAnimal, String animalName, LocalDate birthday) {
         super(idAnimal, classAnimal, animalName, birthday);
@@ -12,17 +12,17 @@ public class Animal extends AbstractAnimal {
     public Animal() {
         super();
     }
-
     
-    
-    // public Animal(int idAnimal, ClassAnimal classAnimal, String animalName, Date birthday, int kindId) {
-    //     this(idAnimal, classAnimal, animalName, birthday);
-    //     this.kindId = kindId;
-    // }
+    public Animal(int idAnimal, String classAnimal, String animalName, LocalDate birthday, String animalType) {
+        this(idAnimal, classAnimal, animalName, birthday);
+        this.anymalType = animalType;
+    }
 
-    // public int getKindId() {
-    //     return kindId;
-    // }
+    public String getAnymalType() {
+        return anymalType;
+    }
 
-    
+    public void setAnymalType(String anymalType) {
+        this.anymalType = anymalType;
+    }    
 }

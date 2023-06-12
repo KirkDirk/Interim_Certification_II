@@ -5,16 +5,11 @@ import models.Animal;
 
 public class MenuController {
     private MenuManagable menuManagable;
-    //private DBActions dbActions;
     
     public MenuController(MenuManagable menuManagable) {
         this.menuManagable = menuManagable;
     }  
     
-    // public MenuController(DBActions dbActions) {
-    //     this.dbActions = dbActions;
-    // }
-
     public void CreateAnimal(Animal animal){
         menuManagable.CreateAnimal(animal);
     }
@@ -27,6 +22,9 @@ public class MenuController {
         return menuManagable.GetClassAnimal();
     }
     
+    public String GetAnimalType(Animal animal, String classAnimalFile){
+        return menuManagable.GetAnimalType(animal, classAnimalFile);
+    }
     
 
 }

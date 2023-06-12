@@ -8,6 +8,9 @@ import controllers.MenuController;
 import models.Animal;
 
 public class ViewShelter {
+
+    private String classAnimalFile = "AnimalShelter\\src\\db\\classAnimal.txt";
+     
     private MenuController menuController;
 
     public ViewShelter(MenuController menuController) {
@@ -78,7 +81,9 @@ public class ViewShelter {
         /** Устанавливаем для текущей записи дату рождения животного */
         LocalDate localDate = LocalDate.parse(prompt(" Введите дату рождения животного в формате ГГГГ-ММ-ДД: "));
         animal.setBirthday(localDate);
-
+        /** Устанавливаем для текущей записи тип животного в зависимости от его вида */
+        String animalType = menuController.GetAnimalType(animal, classAnimalFile);
+        animal.setAnymalType(animalType);
         return animal;
     }
 }

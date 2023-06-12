@@ -9,4 +9,6 @@ public interface MenuManagable {
     public String[] GetClassAnimal();
 
     public int GetNextIdAnimal();
+
+    public String GetAnimalType(Animal animal, String classAnimalFile);
 }
