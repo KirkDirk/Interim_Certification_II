@@ -1,6 +1,9 @@
 package intrefaces;
 
+import java.util.stream.Stream;
+
 import models.Animal;
+import models.ClassAnimal;
 
 /**
  * MMSample
@@ -13,9 +16,19 @@ public class MMSample implements MenuManagable {
     }
 
     @Override
-    public void CreateAnimal(Animal animal) {
-        
-        throw new UnsupportedOperationException("Unimplemented method 'CreateAnimal'");
+    public void CreateAnimal(Animal animal) {            
+        dbActions.createAnimal(animal);
+    }
+
+    @Override
+    public String[] GetClassAnimal() {
+        String[] valuesClassAnimal = Stream.of(ClassAnimal.values()).map(ClassAnimal::name).toArray(String[]::new);
+        return valuesClassAnimal;
+    }
+
+    @Override
+    public int GetNextIdAnimal() {
+        return dbActions.GetNextIdAnimal();        
     }
 
 }

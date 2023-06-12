@@ -12,7 +12,7 @@ public class App {
 
         /** Приветственное слово */
         System.out.println("Привет! Это проект Реестр животных");
-        String filename = "db\\shelter.txt";
+        String filename = "AnimalShelter\\src\\db\\shelter.txt";
         DBActions dbActions = new DBASample(filename);
         MenuManagable menuManagable = new MMSample(dbActions);
         MenuController menuController = new MenuController(menuManagable);

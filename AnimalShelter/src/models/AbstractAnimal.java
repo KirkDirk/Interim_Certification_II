@@ -1,17 +1,17 @@
 package models;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 public abstract class AbstractAnimal {
     /**
      * ID животного в БД
      */
     protected int idAnimal;
-    protected ClassAnimal classAnimal;
+    protected String classAnimal;
     protected String animalName;
-    protected Date birthday;
+    protected LocalDate birthday;
 
-    public AbstractAnimal(int idAnimal, ClassAnimal classAnimal, String animalName, Date birthday) {
+    public AbstractAnimal(int idAnimal, String classAnimal, String animalName, LocalDate birthday) {
         this.idAnimal = idAnimal;
         this.classAnimal = classAnimal;
         this.animalName = animalName;
@@ -20,17 +20,16 @@ public abstract class AbstractAnimal {
 
     public AbstractAnimal(){
         idAnimal = 0;
-        classAnimal = ClassAnimal.NONE;
-        animalName = "";
+        classAnimal = "none";
+        animalName = "none";
         birthday = null;
-
     }
 
     public int getIdAnimal() {
         return idAnimal;
     }
 
-    public ClassAnimal getClassAnimal() {
+    public String getClassAnimal() {
         return classAnimal;
     }
 
@@ -38,7 +37,7 @@ public abstract class AbstractAnimal {
         return animalName;
     }
 
-    public Date getBirthday() {
+    public LocalDate getBirthday() {
         return birthday;
     }
 
@@ -46,7 +45,7 @@ public abstract class AbstractAnimal {
         this.idAnimal = idAnimal;
     }
 
-    public void setClassAnimal(ClassAnimal classAnimal) {
+    public void setClassAnimal(String classAnimal) {
         this.classAnimal = classAnimal;
     }
 
@@ -54,7 +53,7 @@ public abstract class AbstractAnimal {
         this.animalName = animalName;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(LocalDate birthday) {
         this.birthday = birthday;
     }      
         
