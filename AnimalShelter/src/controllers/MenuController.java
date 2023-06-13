@@ -29,6 +29,14 @@ public class MenuController {
     public Animal GetAnimalById(int findId) {
         return menuManagable.GetAnimalById(findId);
     }
+
+    public void AddCommadToAnimal(Animal animal, String anyCommand) {
+        menuManagable.AddCommadToAnimal(animal, anyCommand);
+    }
+
+    public void ChangeAnimal(Animal animal) {
+        menuManagable.ChangeAnimal(animal);
+    }
     
 
 }

@@ -41,4 +41,14 @@ public class MMSample implements MenuManagable {
         return dbActions.GetAnimalById(findId);
     }
 
+    @Override
+    public void AddCommadToAnimal(Animal animal, String anyCommand) {
+        dbActions.AddCommadToAnimal(animal, anyCommand);
+    }
+
+    @Override
+    public void ChangeAnimal(Animal animal) {
+        dbActions.ChangeAnimal(animal);
+    }
+
 }

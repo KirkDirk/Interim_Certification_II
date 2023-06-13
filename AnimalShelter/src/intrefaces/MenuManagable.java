@@ -13,4 +13,8 @@ public interface MenuManagable {
     public String GetAnimalType(Animal animal, String classAnimalFile);
 
     public Animal GetAnimalById(int findId);
+
+    public void AddCommadToAnimal(Animal animal, String anyCommand);
+
+    public void ChangeAnimal(Animal animal);
 }

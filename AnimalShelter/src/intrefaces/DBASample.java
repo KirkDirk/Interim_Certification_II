@@ -7,7 +7,11 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import models.Animal;
 
@@ -38,7 +42,8 @@ public class DBASample implements DBActions{
                                 + animal.getAnymalType() + ";"
                                 + animal.getClassAnimal() + ";"
                                 + animal.getAnimalName() + ";"
-                                + animal.getBirthday() + ";" + "\n";
+                                + animal.getBirthday() + ";" 
+                                + animal.getAnimalCommands() + ";" + "\n";
         return animalString;
     }
 
@@ -131,5 +136,56 @@ public class DBASample implements DBActions{
         animal.setBirthday(LocalDate.parse(animalArr[4]));
         animal.setAnimalCommands(animalArr[5]);
         return animal;
+    }
+
+    @Override
+    public void AddCommadToAnimal(Animal animal, String anyCommand) {
+        String commands = animal.getAnimalCommands();
+        if (commands.equals("")) {
+            commands = anyCommand; 
+        } else {
+            commands += "," + anyCommand;
+        }
+        animal.setAnimalCommands(commands);        
+    }
+
+
+
+    private List<String> GetAllLines(){
+        List<String> allLines = new ArrayList<>();
+        List<String> shelter = new ArrayList<>();
+        try {
+            shelter = Files.readAllLines(Paths.get(this.dbFileName));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        for (String line : shelter) {
+            if (line != null) {   
+                allLines.add((line));            
+            }   
+        }
+        return allLines;        
+    }
+
+    public void ChangeAnimal(Animal animal){
+        List<String> shelter = GetAllLines();
+        String newShelter = "";
+        for (String line : shelter) {
+            if (line != null) {
+                String[] animalArr = line.split(";");
+                if (animalArr[0].equals(Integer.toString(animal.getIdAnimal()))){
+                    newShelter += animalToString(animal) + "\n";                    
+                } else {
+                    newShelter += line + "\n";
+                }
+            }           
+        }
+        try (FileWriter wrtr = new FileWriter(dbFileName, false)) {
+            wrtr.write(newShelter);
+            wrtr.flush();
+            wrtr.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
