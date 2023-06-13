@@ -25,6 +25,10 @@ public class MenuController {
     public String GetAnimalType(Animal animal, String classAnimalFile){
         return menuManagable.GetAnimalType(animal, classAnimalFile);
     }
+
+    public Animal GetAnimalById(int findId) {
+        return menuManagable.GetAnimalById(findId);
+    }
     
 
 }

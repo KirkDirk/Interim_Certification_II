@@ -34,13 +34,18 @@ public class ViewShelter {
                         menuController.CreateAnimal(animal1);
                         System.out.println("\n Животное записано в реестре");
                         break;
-                    case READ:
-                        
+                    case GETCOM:
+                        System.out.println("\n Введите ID животного:");
+                        int findId = Integer.parseInt(prompt("\n Введите ID животного:"));
+                        Animal animal2 = menuController.GetAnimalById(findId);
+                        System.out.println("\n " + animal2.getClassAnimal() + 
+                                            " " + animal2.getAnimalName() + 
+                                            " умеет " + animal2.getAnimalCommands());
                         break;
-                    case DELETE:
+                    case NEWCOM:
                     
                         break;
-                    case TOCLASS:
+                    case FINDID:
                         
                         break;
                     

@@ -17,7 +17,7 @@ public class MMSample implements MenuManagable {
 
     @Override
     public void CreateAnimal(Animal animal) {            
-        dbActions.createAnimal(animal);
+        dbActions.CreateAnimal(animal);
     }
 
     @Override
@@ -34,6 +34,11 @@ public class MMSample implements MenuManagable {
     @Override
     public String GetAnimalType(Animal animal, String classAnimalFile) {
         return dbActions.GetAnimalType(animal, classAnimalFile);
+    }
+
+    @Override
+    public Animal GetAnimalById(int findId) {
+        return dbActions.GetAnimalById(findId);
     }
 
 }

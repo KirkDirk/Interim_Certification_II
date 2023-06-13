@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.time.LocalDate;
 
 import models.Animal;
 
@@ -22,7 +23,7 @@ public class DBASample implements DBActions{
     }
 
     @Override
-    public void createAnimal(Animal animal) {
+    public void CreateAnimal(Animal animal) {
         try (FileWriter wrtr = new FileWriter(dbFileName, true)) {
             wrtr.write(animalToString(animal));
             wrtr.flush();
@@ -81,9 +82,7 @@ public class DBASample implements DBActions{
             while (animalType == "") {
                 if (line != null) {
                     String[] animals = line.split(";");    
-                    System.out.println(animals);
                     for (int i = 1; i < animals.length; i++) {
-                        System.out.println(animals[0] + " " + animals[i] +" "+ animal.getClassAnimal());
                         if (animals[i].toUpperCase().equals(animal.getClassAnimal())) {
                             animalType = animals[0];
                         }
@@ -97,5 +96,40 @@ public class DBASample implements DBActions{
             e.printStackTrace();
         }    
         return animalType;
+    }
+
+    @Override
+    public Animal GetAnimalById(int findId) {
+        Animal findAnimal = null;
+
+        try {
+            File file = new File(dbFileName);
+            FileReader fr = new FileReader(file);
+            BufferedReader reader = new BufferedReader(fr);
+            String line = reader.readLine();
+            while (line != null && findAnimal == null) {
+                String[] animalArr = line.split(";");    
+                if (animalArr[0].equals(Integer.toString(findId))) {
+                    findAnimal = stringToAnimal(animalArr);
+                        }
+                line = reader.readLine();
+                }                                            
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }    
+        return findAnimal;
     }   
+
+    private Animal stringToAnimal(String[] animalArr) {
+        Animal animal = new Animal();
+        animal.setAnimalName(animalArr[0]);
+        animal.setAnymalType(animalArr[1]);
+        animal.setClassAnimal(animalArr[2]);
+        animal.setAnimalName(animalArr[3]);
+        animal.setBirthday(LocalDate.parse(animalArr[4]));
+        animal.setAnimalCommands(animalArr[5]);
+        return animal;
+    }
 }
