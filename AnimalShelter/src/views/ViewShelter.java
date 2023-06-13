@@ -23,7 +23,12 @@ public class ViewShelter {
         CommandBaseView com = CommandBaseView.NONE;
 
         while (true) {
-            String command = prompt("Введите команду: ");
+            String command = prompt("Доступные команды: \n"
+                + "    CREATE - добавить животное в реестр \n"
+                + "    GETCOM - просмотреть команды животного (по ID) \n"
+                + "    NEWCOM - добавить команды животному (по ID) \n"
+                + "    EXIT - выйти из программы \n\n"
+                + "Введите команду: ");
             com = CommandBaseView.valueOf(command.toUpperCase());
             if (com == CommandBaseView.EXIT)
                 return;
