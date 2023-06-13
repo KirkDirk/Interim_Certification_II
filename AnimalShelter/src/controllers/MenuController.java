@@ -30,8 +30,8 @@ public class MenuController {
         return menuManagable.GetAnimalById(findId);
     }
 
-    public void AddCommadToAnimal(Animal animal, String anyCommand) {
-        menuManagable.AddCommadToAnimal(animal, anyCommand);
+    public Animal AddCommadToAnimal(Animal animal, String anyCommand) {
+        return menuManagable.AddCommadToAnimal(animal, anyCommand);        
     }
 
     public void ChangeAnimal(Animal animal) {

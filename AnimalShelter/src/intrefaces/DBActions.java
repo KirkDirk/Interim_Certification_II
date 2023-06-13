@@ -12,7 +12,7 @@ public interface DBActions {
 
     public Animal GetAnimalById(int findId);
 
-    public void AddCommadToAnimal(Animal animal, String anyCommand);
+    public Animal AddCommadToAnimal(Animal animal, String anyCommand);
 
     public void ChangeAnimal(Animal animal);
 

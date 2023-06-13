@@ -42,8 +42,8 @@ public class MMSample implements MenuManagable {
     }
 
     @Override
-    public void AddCommadToAnimal(Animal animal, String anyCommand) {
-        dbActions.AddCommadToAnimal(animal, anyCommand);
+    public Animal AddCommadToAnimal(Animal animal, String anyCommand) {
+        return dbActions.AddCommadToAnimal(animal, anyCommand);
     }
 
     @Override

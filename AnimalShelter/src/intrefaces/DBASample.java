@@ -106,7 +106,6 @@ public class DBASample implements DBActions{
     @Override
     public Animal GetAnimalById(int findId) {
         Animal findAnimal = null;
-
         try {
             File file = new File(dbFileName);
             FileReader fr = new FileReader(file);
@@ -129,7 +128,7 @@ public class DBASample implements DBActions{
 
     private Animal stringToAnimal(String[] animalArr) {
         Animal animal = new Animal();
-        animal.setAnimalName(animalArr[0]);
+        animal.setIdAnimal(Integer.parseInt(animalArr[0]));
         animal.setAnymalType(animalArr[1]);
         animal.setClassAnimal(animalArr[2]);
         animal.setAnimalName(animalArr[3]);
@@ -139,17 +138,17 @@ public class DBASample implements DBActions{
     }
 
     @Override
-    public void AddCommadToAnimal(Animal animal, String anyCommand) {
+    public Animal AddCommadToAnimal(Animal animal, String anyCommand) {
         String commands = animal.getAnimalCommands();
-        if (commands.equals("")) {
+        if (commands.equals(" ")) {
             commands = anyCommand; 
         } else {
             commands += "," + anyCommand;
         }
-        animal.setAnimalCommands(commands);        
+        animal.setAnimalCommands(commands);     
+        return animal;
+
     }
-
-
 
     private List<String> GetAllLines(){
         List<String> allLines = new ArrayList<>();
@@ -174,7 +173,7 @@ public class DBASample implements DBActions{
             if (line != null) {
                 String[] animalArr = line.split(";");
                 if (animalArr[0].equals(Integer.toString(animal.getIdAnimal()))){
-                    newShelter += animalToString(animal) + "\n";                    
+                    newShelter += animalToString(animal);                    
                 } else {
                     newShelter += line + "\n";
                 }

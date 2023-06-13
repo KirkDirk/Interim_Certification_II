@@ -10,14 +10,15 @@ public class Animal extends AbstractAnimal {
         super(idAnimal, classAnimal, animalName, birthday);
     }
 
-    public Animal() {
-        super();
-    }
-    
     public Animal(int idAnimal, String classAnimal, String animalName, LocalDate birthday, String animalType, String animalCommands) {
         this(idAnimal, classAnimal, animalName, birthday);
         this.anymalType = animalType;
         this.animalCommands = animalCommands;
+    }
+    
+    public Animal() {
+        super();
+        animalCommands = " ";
     }
 
     public String getAnymalType() {

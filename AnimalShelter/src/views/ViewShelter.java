@@ -23,7 +23,7 @@ public class ViewShelter {
         CommandBaseView com = CommandBaseView.NONE;
 
         while (true) {
-            String command = prompt("Доступные команды: \n"
+            String command = prompt("\n Доступные команды: \n"
                 + "    CREATE - добавить животное в реестр \n"
                 + "    GETCOM - просмотреть команды животного (по ID) \n"
                 + "    NEWCOM - добавить команды животному (по ID) \n"
@@ -40,20 +40,22 @@ public class ViewShelter {
                         System.out.println("\n Животное записано в реестре");
                         break;
                     case GETCOM:
-                        int findId = Integer.parseInt(prompt("\n Введите ID животного:"));
+                        int findId = Integer.parseInt(prompt("\n Введите ID животного: "));
                         Animal animal2 = menuController.GetAnimalById(findId);
                         System.out.println("\n " + animal2.getClassAnimal() + 
                                             " " + animal2.getAnimalName() + 
                                             " умеет " + animal2.getAnimalCommands());
                         break;
                     case NEWCOM:
-                        int findId2 = Integer.parseInt(prompt("\n Введите ID животного:"));
+                        int findId2 = Integer.parseInt(prompt("\n Введите ID животного: "));
                         Animal animal3 = menuController.GetAnimalById(findId2);
-                        String exitCommands = "no";
-                        while (exitCommands == "no") {
+                        Boolean exitCommand = true;
+                        while (exitCommand) {
                             String anyCommand = prompt("\n Введите команду: ");
-                            menuController.AddCommadToAnimal(animal3, anyCommand);
-                            exitCommands = prompt("\n Добавить ещё команду? yes/no");
+                            animal3 = menuController.AddCommadToAnimal(animal3, anyCommand);
+                            if (prompt("\n Добавить ещё команду? yes/no: ").equals("no")){
+                                exitCommand = false;
+                            }
                         }
                         menuController.ChangeAnimal(animal3);
                         System.out.println("\n Команды записаны в реестре");
